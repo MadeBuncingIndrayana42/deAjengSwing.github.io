@@ -1,0 +1,333 @@
+/* Custom Fonts */
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-lato {
+    font-family: 'Lato', sans-serif;
+}
+
+/* Custom Colors */
+.text-gold-500 {
+    color: #D4AF37;
+}
+
+.bg-gold-500 {
+    background-color: #D4AF37;
+}
+
+/* Songket Pattern Background */
+.bg-songket-pattern {
+    background-image: url('../images/songket-pattern.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Splash Screen Animation */
+#splash-screen {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+#splash-screen img {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+#splash-screen .text-gold-500 {
+    background: linear-gradient(90deg, #D4AF37, #F4D03F, #D4AF37);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Header Scroll Effect */
+header.scrolled {
+    background-color: rgba(185, 28, 28, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Card Hover Effects */
+.product-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    transition: transform 0.5s ease-in-out;
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Parallax Effect */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .product-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #B91C1C;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #991b1b;
+}
+
+/* Loading Animation */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Exit Intent Popup */
+.exit-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    max-width: 320px;
+    z-index: 1000;
+}
+
+.exit-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.exit-popup h3 {
+    color: #1F2937;
+    line-height: 1.4;
+}
+
+.exit-popup p {
+    color: #4B5563;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.exit-popup a {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.exit-popup a:hover {
+    transform: translateY(-1px);
+}
+
+/* Navbar Batik Pattern */
+.navbar-batik {
+    background-color: #B91C1C;
+    background-image: url('../images/batik-pattern.png');
+    background-size: 200px;
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    position: relative;
+}
+
+.navbar-batik::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(185, 28, 28, 0.55), 
+        rgba(217, 119, 6, 0.35),
+        rgba(185, 28, 28, 0.55)
+    );
+    z-index: 0;
+}
+
+.navbar-batik nav {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-batik .nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-batik .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #D4AF37;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-batik .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-batik .nav-link:hover {
+    color: #D4AF37 !important;
+}
+
+/* Slider Styles */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Slider Controls */
+.slider button {
+    z-index: 10;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.slider button:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hero Image Styles */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+.hero-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+} 
