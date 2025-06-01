@@ -18,7 +18,7 @@
 
 /* Songket Pattern Background */
 .bg-songket-pattern {
-    background-image: url('../images/songket-pattern.png');
+    background-image: url('../images/batik-pattern.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -67,10 +67,98 @@
     animation: shimmer 3s linear infinite;
 }
 
-/* Header Scroll Effect */
+/* Header & Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #B91C1C;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+}
+
 header.scrolled {
-    background-color: rgba(185, 28, 28, 0.95);
+    background-color: #B91C1C;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    position: relative;
+    z-index: 1001;
+    padding: 0.5rem 0;
+}
+
+.nav-link {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: #FECACA;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu */
+#mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #B91C1C;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    padding: 1rem 0;
+    /* Ensure it is hidden by default on mobile */
+    display: none;
+}
+
+#mobileMenu.show {
+    transform: translateY(0);
+    display: block; /* Make it visible when 'show' class is present */
+}
+
+@media (min-width: 768px) {
+    #mobileMenu {
+        /* Hide on desktop */
+        display: none !important;
+    }
+}
+
+/* Adjust content padding for fixed header */
+body {
+    padding-top: 5rem;
+}
+
+@media (min-width: 768px) {
+    body {
+        padding-top: 6rem;
+    }
 }
 
 /* Product Card Hover Effects */
@@ -330,4 +418,247 @@ header.scrolled {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+/* Base Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Responsive Container */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Hero Section Responsive */
+#beranda {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+#beranda .container {
+    width: 100%;
+}
+
+#beranda .grid {
+    width: 100%; /* Pastikan grid mengambil lebar penuh containernya */
+}
+
+@media (max-width: 768px) {
+    #beranda {
+        min-height: calc(100vh - 4rem);
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #beranda {
+        min-height: 100vh;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    #beranda .grid {
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr); /* Pastikan 2 kolom dengan lebar sama */
+    }
+}
+
+/* Product Grid Responsive */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Aspect Ratio Container */
+.aspect-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+}
+
+.aspect-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Spacing */
+.section-padding {
+    padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding: 6rem 0;
+    }
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .nav-link {
+        padding: 0.75rem 1rem;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Responsive Forms */
+@media (max-width: 768px) {
+    input, textarea, select {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Responsive Buttons */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.hero-slider .slides {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.hero-slider .slide {
+    flex: 0 0 20%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: end;
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.slider-nav:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+    left: 20px;
+}
+
+.slider-nav.next {
+    right: 20px;
+}
+
+.slider-nav svg {
+    width: 24px;
+    height: 24px;
+    color: #B91C1C;
+}
+
+/* Responsive Hero Slider */
+@media (max-width: 768px) {
+    .hero-slider {
+        height: 400px;
+    }
+    
+    .slider-nav {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .slider-nav svg {
+        width: 20px;
+        height: 20px;
+    }
 } 
