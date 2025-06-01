@@ -2,27 +2,37 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     const header = document.querySelector('header');
+    let lastScroll = 0;
+
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
+        const currentScroll = window.pageYOffset;
+        
+        // Add shadow when scrolled
+        if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
+        
+        lastScroll = currentScroll;
     });
 
     // Mobile menu functionality
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
     
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('show');
+            body.style.overflow = mobileMenu.classList.contains('show') ? 'hidden' : '';
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('show');
+                body.style.overflow = '';
             }
         });
 
@@ -30,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('show');
+                body.style.overflow = '';
             });
         });
     }
@@ -131,17 +142,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Slider functionality
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelector('.slides');
+    // Hero Slider
+    const heroSlider = document.querySelector('.hero-slider');
+    const slides = document.querySelector('.hero-slider .slides');
     const prevButton = document.getElementById('prevSlide');
     const nextButton = document.getElementById('nextSlide');
     let currentSlide = 0;
-    const totalSlides = document.querySelectorAll('.slide').length;
+    const totalSlides = document.querySelectorAll('.hero-slider .slide').length;
 
     function updateSlider() {
-        const offset = currentSlide * -100;
-        slides.style.transform = `translateX(${offset}%)`;
+        const slideWidth = 100 / totalSlides;
+        slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
     }
 
     function nextSlide() {
@@ -154,23 +165,34 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSlider();
     }
 
-    // Event listeners for buttons
+    // Event listeners for slider buttons
     if (prevButton && nextButton) {
-        prevButton.addEventListener('click', prevSlide);
-        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        nextButton.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+        });
     }
 
     // Auto slide every 5 seconds
     let slideInterval = setInterval(nextSlide, 5000);
 
     // Pause auto slide on hover
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
+    if (heroSlider) {
+        heroSlider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
 
-    slider.addEventListener('mouseleave', () => {
-        slideInterval = setInterval(nextSlide, 5000);
-    });
+        heroSlider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+    }
 
     // Initialize slider
     updateSlider();
