@@ -494,6 +494,40 @@ img {
     }
 }
 
+/* About Section Layout */
+#tentang {
+    display: flex;
+    align-items: center; /* Pusatkan konten vertikal */
+    padding-top: 6rem; /* Sesuaikan padding atas */
+    padding-bottom: 6rem; /* Sesuaikan padding bawah */
+}
+
+#tentang .container {
+    width: 100%;
+}
+
+#tentang .grid {
+    width: 100%;
+    align-items: center;
+    gap: 3rem; /* Menambah jarak antar kolom */
+}
+
+@media (max-width: 768px) {
+    #tentang {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    #tentang .grid {
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #tentang .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom di layar medium ke atas */
+    }
+}
+
 /* Product Grid Responsive */
 @media (max-width: 768px) {
     .grid {
